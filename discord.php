@@ -47,7 +47,7 @@
         ));
         $_SESSION['access_token'] = $token->access_token;
         
-        setcookie("refresh_token", $token->refresh_token, time()+60*60*24*30, "", "", true);
+        setcookie("refresh_token", $token->refresh_token, time()+60*60*24*30, "", "", true, true);
         
         header('Location: https://www.example.com/discord/'); // recharger la page sans "?code=VZUhfeghjgfYUZGUIgGIZ..." // Reload page without "?code=VZUhfeghjgfYUZGUIgGIZ..."
     }
@@ -59,7 +59,7 @@
         }
         
         if (session("access_token")) unset($_SESSION['access_token']);
-        if (isset($_COOKIE['refresh_token'])) setcookie("refresh_token", "", time() - 3600, "", "", true);
+        if (isset($_COOKIE['refresh_token'])) setcookie("refresh_token", "", time() - 3600, "", "", true, true);
         
         header('Location: https://www.example.com/discord/'); // recharger la page sans "?action=logout" // Refresh page whithout "?action=logout"
     }
@@ -75,7 +75,7 @@
         $rtoken = apiRequest($tokenURL, $data, array("Content-Type: application/x-www-form-urlencoded"), true);
         
         $_SESSION['access_token'] = $rtoken->access_token;
-        setcookie("refresh_token", $rtoken->refresh_token, time()+60*60*24*30, "", "", true);
+        setcookie("refresh_token", $rtoken->refresh_token, time()+60*60*24*30, "", "", true, true);
         
         header('Location:https://www.example.com/discord/'); // Recharger la page sans "?action=refresh" // Refresh page without "?action=refresh"
     }
