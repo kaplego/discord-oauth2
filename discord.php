@@ -72,7 +72,6 @@
             'grant_type' => 'refresh_token',
             'refresh_token' => $_COOKIE['refresh_token']
         );
-        echo http_build_query($data).'<br>';
         $rtoken = apiRequest($tokenURL, $data, array("Content-Type: application/x-www-form-urlencoded"), true);
         
         $_SESSION['access_token'] = $rtoken->access_token;
